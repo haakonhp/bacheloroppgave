@@ -1,0 +1,14 @@
+# i folden med dunamis_spring.tar filen
+c:/dunamis/custom_image/dunamis_spring/
+
+#minwg64
+docker load -i /c/dunamis/custom_image/dunamis_spring/dunamis_spring.tar
+
+#windows
+docker load -i c:/dunamis/custom_image/dunamis_spring/dunamis_spring.tar
+
+# finn imaget
+docker images
+
+# endre imaget
+docker tag 'imageID' dunamis_spring:latest

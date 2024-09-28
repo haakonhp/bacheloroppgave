@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hiof.gruppe25.core.models">
+    <class name="hiof.gruppe25.core.models.corporation.Corporation" table="corporation">
+        <id name="id" column="id">
+            <generator class="sequence"/>
+        </id>
+        <property name="companyName" column="companyName"/>
+        <property name="companySector" column="companySector"/>
+        <property name="contactPerson" column="contactPerson"/>
+        <property name="contactNumber" column="contactNumber" type="int"/>
+        <property name="contactEmail" column="contactEmail"/>
+        <property name="numberOfEmployees" column="numberOfEmployees" type="int"/>
+    </class>
+</hibernate-mapping>

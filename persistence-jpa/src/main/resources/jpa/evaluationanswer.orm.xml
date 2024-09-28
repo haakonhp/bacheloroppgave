@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <description>JPA Mappings for Models</description>
+    <package>hiof.gruppe25.core.models</package>
+
+    <entity class="hiof.gruppe25.core.models.evaluationanswer.EvaluationAnswer" name="evaluationAnswer">
+        <table name="evaluationAnswer"/>
+        <inheritance strategy="JOINED"/>
+        <attributes>
+            <id name="id"/>
+            <basic name="lastUpdatedAt">
+                <column column-definition="datetime"/>
+            </basic>
+            <basic name="value"/>
+            <basic name="desiredValue"/>
+            <many-to-one name="control">
+                <join-column updatable="false"/>
+            </many-to-one>
+
+
+
+        </attributes>
+    </entity>
+</entity-mappings>

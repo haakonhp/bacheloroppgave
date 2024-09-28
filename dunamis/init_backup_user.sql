@@ -1,0 +1,4 @@
+CREATE USER IF NOT EXISTS 'backup_user'@'%' IDENTIFIED BY 'rkVmxhhX3ul^wD7pH&7W';
+GRANT SELECT, LOCK TABLES, SHOW VIEW, EVENT, TRIGGER, RELOAD, FILE ON *.* TO 'backup_user'@'%';
+GRANT ALL PRIVILEGES ON `dunamis`.* TO 'backup_user'@'%';
+FLUSH PRIVILEGES;

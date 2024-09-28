@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="hiof.gruppe25.core.models">
+    <class name="hiof.gruppe25.core.models.control.Control" table="control">
+        <id name="controlNumber" column="controlNumber">
+            <generator class="assigned"/>
+        </id>
+        <property name="source" column="source" type="text"/>
+        <property name="controlID" column="controlid" type="text"/>
+        <property name="details" column="details" type="text"/>
+        <property name="priority" column="priority"/>
+        <property name="ControlOverview" column="ControlOverview" type="text"/>
+        <property name="ControlQuestion" column="ControlQuestion" type="text"/>
+        <property name="maturityLevel0" column="maturityLevel0"/>
+        <property name="maturityLevel1" column="maturityLevel1" type="text"/>
+        <property name="maturityLevel2" column="maturityLevel2" type="text"/>
+        <property name="maturityLevel3" column="maturityLevel3" type="text"/>
+        <property name="maturityLevel4" column="maturityLevel4" type="text"/>
+        <property name="maturityLevel5" column="maturityLevel5"/>
+        <property name="cyberDefenseFunction" column="cyberDefenseFunction"/>
+        <property name="cyberDefenseAssetColor" column="cyberDefenseAssetColor"/>
+        <property name="cyberDefenseFunctionColor" column="cyberDefenseFunctionColor"/>
+
+        <list name="implementingFrameworks" cascade="all">
+            <key column="frameworkIdReference"/>
+            <index/>
+            <one-to-many entity-name="hiof.gruppe25.core.models.frameworkreference.FrameworkReference"/>
+        </list>
+
+        <list name="cyberDefenseAsset" table="cyberDefenseAsset">
+            <key column="controlAssetReference"/>
+            <index/>
+            <element column="assetText" type="string"/>
+        </list>
+    </class>
+</hibernate-mapping>

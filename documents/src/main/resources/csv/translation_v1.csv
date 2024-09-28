@@ -1,0 +1,11 @@
+ControlNumber,﻿Kontroll NR
+CategoryNr,Kategori NR
+CategoryName,Kategori NAVN
+SubCategoryNr,Under Kategori NR
+SubCategoryName,Under Kategori NAVN
+Details,Detaljer
+ActionID,Tiltak ID
+ActionOverview,Tiltaksoverskrift
+ActionDescription,Tiltaksbeskrivelse
+Priority,Prioritet
+implementingFrameworks,Rammeverk

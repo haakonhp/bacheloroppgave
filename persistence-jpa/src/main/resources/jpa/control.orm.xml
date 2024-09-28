@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <description>JPA Mappings for Models</description>
+    <package>hiof.gruppe25.core.models</package>
+
+    <entity class="hiof.gruppe25.core.models.control.Control" name="control">
+        <table name="control">
+            <index column-list="source"/>
+        </table>
+        <inheritance strategy="JOINED"/>
+        <attributes>
+            <id name="controlNumber"/>
+            <basic name="source">
+                <column name="source" column-definition="varchar(255)"/>
+            </basic>
+            <basic name="controlID">
+                <column name="controlid" column-definition="TEXT"/>
+            </basic>
+            <basic name="details">
+                <column name="details" column-definition="TEXT"/>
+            </basic>
+            <basic name="priority">
+                <column name="priority"/>
+            </basic>
+            <basic name="controlOverview">
+                <column name="ControlOverview" column-definition="TEXT"/>
+            </basic>
+            <basic name="controlQuestion">
+                <column name="ControlQuestion" column-definition="TEXT"/>
+            </basic>
+            <basic name="controlQuestion">
+                <column name="ControlQuestion" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel0">
+                <column name="maturityLevel0" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel1">
+                <column name="maturityLevel1" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel2">
+                <column name="maturityLevel2" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel3">
+                <column name="maturityLevel3" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel4">
+                <column name="maturityLevel4" column-definition="TEXT"/>
+            </basic>
+            <basic name="maturityLevel5">
+                <column name="maturityLevel5" column-definition="TEXT"/>
+            </basic>
+            <basic name="cyberDefenseFunction">
+                <column name="cyberDefenseFunction"/>
+            </basic>
+            <basic name="cyberDefenseAssetColor">
+                <column name="cyberDefenseAssetColor"/>
+            </basic>
+            <basic name="cyberDefenseFunctionColor">
+                <column name="cyberDefenseFunctionColor"/>
+            </basic>
+
+            <one-to-many name="implementingFrameworks">
+                <cascade>
+                <cascade-all/>
+                </cascade>
+            </one-to-many>
+
+            <element-collection name="cyberDefenseAsset"/>
+            <element-collection name="controlTypes"/>
+        </attributes>
+    </entity>
+
+
+
+
+
+
+</entity-mappings>

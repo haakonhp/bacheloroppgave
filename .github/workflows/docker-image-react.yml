@@ -1,0 +1,37 @@
+name: Build Docker Custom Image dunamis.react (Node)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+ 
+jobs:
+  build-and-save:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          outputs: type=docker,dest=/tmp/dunamis_react.tar
+          no-cache: true
+          tags: "dunamis_react:latest"
+
+      - name: Upload Docker image as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dunamis_react
+          path: /tmp/dunamis_react.tar
+
+      - name: Move Docker image to repository folder
+        run: |
+          mkdir -p ${{ github.workspace }}/dunamis/custom_image/dunamis_react
+          mv /tmp/dunamis_react.tar ${{ github.workspace }}/dunamis/custom_image/dunamis_react/dunamis_react.tar

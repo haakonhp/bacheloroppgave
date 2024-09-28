@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <description>JPA Mappings for Models</description>
+    <package>hiof.gruppe25.core.models</package>
+
+    <entity class="hiof.gruppe25.core.models.corporation.Corporation" name="corporation">
+        <table name="corporation"/>
+        <inheritance strategy="JOINED"/>
+        <attributes>
+            <id name="id"/>
+            <basic name="companyName">
+                <column name="companyName"/>
+            </basic>
+            <basic name="companySector">
+                <column name="companySector"/>
+            </basic>
+            <basic name="contactPerson">
+                <column name="contactPerson"/>
+            </basic>
+            <basic name="contactNumber">
+                <column name="contactNumber" column-definition="INTEGER"/>
+            </basic>
+            <basic name="contactEmail">
+                <column name="contactEmail"/>
+            </basic>
+            <basic name="numberOfEmployees">
+                <column name="numberOfEmployees" column-definition="INTEGER"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

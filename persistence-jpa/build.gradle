@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'hiof.gruppe25'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation project(':core')
+    implementation 'org.hibernate:hibernate-core:6.4.1.Final'
+    implementation 'com.mysql:mysql-connector-j:8.2.0'
+    testImplementation 'com.approvaltests:approvaltests:22.3.3'
+    testImplementation 'com.h2database:h2:2.2.224'
+}
+
+test {
+    useJUnitPlatform()
+}

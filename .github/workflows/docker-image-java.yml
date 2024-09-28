@@ -1,0 +1,50 @@
+name: Build Docker Custom Image dunamis.spring (Java)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3.1.0
+      with:
+        gradle-version: '8.6'
+    
+    - name: Build with Gradle 8.6
+      run: gradle build -x test
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        file: ./Dockerfile
+        outputs: type=docker,dest=/tmp/dunamis_spring.tar
+        tags: "dunamis_spring:latest"
+        
+    - name: Upload Docker image as a build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dunamis_spring
+        path: /tmp/dunamis_spring.tar
+
+    - name: Move Docker image to repository folder
+      run: |
+        mkdir -p ${{ github.workspace }}//dunamis/custom_image/dunamis_spring
+        mv /tmp/dunamis_spring.tar ${{ github.workspace }}//dunamis/custom_image/dunamis_spring/dunamis_spring.tar

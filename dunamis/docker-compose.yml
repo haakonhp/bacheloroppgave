@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  dunamis_mysql:
+    image: mysql:latest
+    restart: always
+    container_name: dunamis_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Xj52N7JwBfqANM6E4QgwXGn63bsW3Pje
+      MYSQL_DATABASE: dunamis                       #NB skal skrives to steder
+      MYSQL_USER: spring_user                       #NB skal skrives to steder
+      MYSQL_PASSWORD: IPS@ie6m3!Iqs2                #NB skal skrives to steder
+      MYSQL_BACKUP_USER: backup_user                #NB skal skrives to steder
+      MYSQL_BACKUP_PASSWORD: rkVmxhhX3ul^wD7pH&7W   #NB skal skrives to steder
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    volumes:
+      - C:/dunamis/dunamis_mysql_database:/var/lib/mysql #Endre "C:/Dunamis_Assessment" om det ønskes annen persistant storage    Eventuelt bruk 'COMPOSE_CONVERT_WINDOWS_PATHS' for å muliggjøre både linux og windows innstallasjon
+      - ./dunamis_dump.sql:/docker-entrypoint-initdb.d/dunamis_dump.sql # database dump sql
+      - ./init_backup_user.sql:/docker-entrypoint-initdb.d/init_backup_user.sql # Custom script å lage backup user
+      
+  dunamis_spring:
+    image: dunamis_spring:latest
+    restart: always
+    container_name: dunamis_spring
+    build:
+      context: ./dunamis_spring
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dunamis_mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://dunamis_mysql:3306/dunamis # 'dunamis_mysql' er dynamisk variabel skal sende IPv4 som $ENV
+      SPRING_DATASOURCE_USERNAME: spring_user       
+      SPRING_DATASOURCE_PASSWORD: IPS@ie6m3!Iqs2
+      BACKUP_HOST: dunamis_mysql  # dynamisk variabel skal sende IPv4 som $ENV
+      BACKUP_PORT: 3306
+      BACKUP_DATABASE: dunamis
+      BACKUP_USERNAME: backup_user
+      BACKUP_PASSWORD: rkVmxhhX3ul^wD7pH&7W
+      
+  dunamis_react:
+    image: dunamis_react:latest
+    restart: always
+    container_name: dunamis_react
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
+    depends_on:
+      - dunamis_spring
+    environment:
+      DUNAMIS_SPRING_URL: http://dunamis_spring:8080 # 'dunamis_spring' er dynamisk variabel skal sende IPv4 som $ENV

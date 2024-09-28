@@ -1,0 +1,7 @@
+[user]
+	email = haakonp@hiof.no
+	name = Håkon P
+[core]
+	excludesfile = ~/.gitignore_global
+[commit]
+	template = ~/.gitmessage

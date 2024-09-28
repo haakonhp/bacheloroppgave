@@ -1,0 +1,12 @@
+*.class
+*.log
+.gradle/
+build/
+.idea/
+*.iml
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+node_modules/
+settings/

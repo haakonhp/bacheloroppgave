@@ -1,0 +1,12 @@
+# i folden med Dockerfile (for dunamis_spring)
+root (grunnmappen) av github repositoriet
+
+# build custom image java spring
+#minwg64 / Linux
+docker build -t dunamis_spring:latest .
+
+#windows
+docker build -t dunamis_spring:latest .
+
+# finn imaget
+docker images

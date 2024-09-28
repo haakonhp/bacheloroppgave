@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+                 version="2.2">
+    <description>JPA Mappings for Models</description>
+    <package>hiof.gruppe25.core.models</package>
+
+    <entity class="hiof.gruppe25.core.models.frameworkreference.FrameworkReference" name="frameworkReference">
+        <table name="framework_reference"/>
+        <inheritance strategy="JOINED"/>
+        <attributes>
+            <id name="frameworkReferenceListId"/>
+            <many-to-one name="framework"/>
+            <element-collection name="dbReferences"/>
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,0 +1,13 @@
+# i folden med dunamis_react.tar filen
+
+#minwg64
+docker load -i /c/dunamis/custom_image/dunamis_react/dunamis_react.tar
+
+#windows
+docker load -i c:/dunamis/custom_image/dunamis_react/dunamis_react.tar
+
+# finn imaget
+docker images
+
+# endre imaget
+docker tag 'imageID' dunamis_react:latest
